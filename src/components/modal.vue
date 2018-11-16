@@ -20,8 +20,11 @@ export default {
       </slot>
     </header> -->
     <section class="modal-body">
+      <span>draw a </span>
       <slot name="body">
-        {{ this.drawObject }}
+        <h1 class="object-name">
+          {{ this.drawObject }}
+        </h1>
       </slot>
     </section>
     <footer class="modal-footer">
@@ -74,9 +77,12 @@ export default {
 }
 
 .modal-body {
-  text-transform: capitalize;
   position: relative;
   padding: 20px 10px;
+}
+
+.modal-body .object-name {
+  text-transform: capitalize;
 }
 
 .btn-close {

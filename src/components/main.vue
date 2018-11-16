@@ -34,7 +34,7 @@ export default {
         showModal: true,
         hasDrawn: false,
         isDrawing: false,
-        drawObject: `${faker.hacker.noun()} ${faker.company.catchPhraseNoun()}`,
+        drawObject: `${faker.hacker.ingverb()} ${faker.company.bsNoun()}`,
         startTime: Date.now(),
         timeRemaining: 10
       }
@@ -50,14 +50,15 @@ export default {
 
       setTimeout(function() {
         if (that.state.hasDrawn) {
-          sayMessage(getRandomMessage());
+          // sayMessage(getRandomMessage());
+          sayMessage(getRandomMessage(that.state.drawObject.split(' ')[0]))
           that.state.isDrawing = false
         }
       }, getRandomTimespan(2000, 4000));
 
       setTimeout(function() {
         if (that.state.isDrawing) {
-          sayMessage('that looks like ' + that.state.drawObject);
+          sayMessage('Oh, yeah! that looks like ' + that.state.drawObject);
           setTimeout(function() {
             that.state = {
               ...that.state,
