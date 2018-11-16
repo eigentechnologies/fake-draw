@@ -1,10 +1,9 @@
 <script>
 export default {
   name: 'modal',
-
+  props: ['drawObject'],
   methods: {
     close() {
-      console.log('closing...');
       this.$emit('close');
     },
   },
@@ -14,26 +13,21 @@ export default {
 <template>
 <div class="modal-backdrop">
   <div class="modal">
-    <header class="modal-header">
-      <slot name="header">
-        This is the default tile!
-
-        <button type="button" class="btn-close" @click="close">
+    <!-- <header class="modal-header">
+      <slot name="header"><button type="button" class="btn-close" @click="close">
           x
         </button>
       </slot>
-    </header>
+    </header> -->
     <section class="modal-body">
       <slot name="body">
-        I'm the default body!
+        {{ this.drawObject }}
       </slot>
     </section>
     <footer class="modal-footer">
       <slot name="footer">
-        I'm the default footer!
-
         <button type="button" class="btn-green" @click="close">
-          Close me!
+          Let's Draw!
         </button>
       </slot>
     </footer>
@@ -55,8 +49,8 @@ export default {
 }
 
 .modal {
+  width: 300px;
   background: #FFFFFF;
-  box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
   display: flex;
   flex-direction: column;
@@ -76,10 +70,11 @@ export default {
 
 .modal-footer {
   border-top: 1px solid #eeeeee;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .modal-body {
+  text-transform: capitalize;
   position: relative;
   padding: 20px 10px;
 }
@@ -95,6 +90,7 @@ export default {
 }
 
 .btn-green {
+  cursor: pointer;
   color: white;
   background: #4AAE9B;
   border: 1px solid #4AAE9B;

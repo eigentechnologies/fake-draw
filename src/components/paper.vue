@@ -7,6 +7,11 @@ import CanvasFreeDrawing from 'canvas-free-drawing'
 
 export default {
   name: 'Paper',
+  methods: {
+    isDrawing: function() {
+      this.$emit('drawing');
+    }
+  },
   mounted() {
     this.$nextTick(function() {
       // initialize
@@ -24,7 +29,7 @@ export default {
       paper.on({
         event: 'redraw'
       }, () => {
-        console.log('canvas did redraw');
+        this.isDrawing();
       });
     });
   }
