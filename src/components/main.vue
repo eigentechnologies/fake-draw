@@ -14,7 +14,7 @@
 import faker from 'faker';
 import Paper from './paper'
 import modal from './modal'
-import { sayMessage } from '../helpers'
+import { sayMessage, getRandomMessage } from '../helpers'
 export default {
   name: 'Main',
   components: {
@@ -42,7 +42,7 @@ export default {
       this.state.showModal = false;
       setTimeout(function() {
         if (that.state.hasDrawn) {
-          sayMessage('what on earth is this?');
+          sayMessage(getRandomMessage());
           that.state.isDrawing = false
         }
       }, 2000);
@@ -50,8 +50,11 @@ export default {
         if (that.state.isDrawing) {
           sayMessage('that looks like ' + that.state.drawObject);
           setTimeout(function() {
-            that.state.drawObject = `${faker.hacker.noun()} ${faker.company.catchPhraseNoun()}`;
-            that.state.showModal = true;
+            that.state = {
+              ...that.state,
+              drawObject: `${faker.hacker.noun()} ${faker.company.catchPhraseNoun()}`,
+              showModal: true
+            };
           }, 3000);
         }
         else {
@@ -59,8 +62,11 @@ export default {
             sayMessage('I dont know what that is');
           }
           else {
-            that.state.drawObject = `${faker.hacker.noun()} ${faker.company.catchPhraseNoun()}`;
-            that.state.showModal = true;
+            that.state = {
+              ...that.state,
+              drawObject: `${faker.hacker.noun()} ${faker.company.catchPhraseNoun()}`,
+              showModal: true
+            }
           }
         }
       }, 5000);
