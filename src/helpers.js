@@ -19,3 +19,5 @@ const messages = [
 ]
 
 export const getRandomMessage = () => faker.random.arrayElement(messages)
+
+export const getRandomTimespan = (min = 500, max = 3000) => faker.random.number({min, max})
