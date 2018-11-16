@@ -1,5 +1,6 @@
 <template>
   <main>
+    <h1>{{ state.drawObject }}</h1>
     <Paper v-on:drawing="isDrawing"
       v-bind:drawObject="state.drawObject"
     />
